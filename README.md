@@ -20,7 +20,11 @@ Built with clean HTML, CSS, and vanilla JavaScript, ImageCrafter runs entirely c
 
 
 ## Screenshot
-https://akash098p.github.io/Image_Crafter/
+
+![Image Crafter](ImgCraft.png)
+
+
+Click to quick preview : https://akash098p.github.io/Image_Crafter/
 ## 🚀 Getting Started
 
 Open: Open index.html in any modern web browser.
