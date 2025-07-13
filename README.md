@@ -19,16 +19,16 @@ Built with clean HTML, CSS, and vanilla JavaScript, ImageCrafter runs entirely c
   •📥 Download combined result as PNG, JPEG, or PDF
 
 
+## Screenshot
 
 ## 🚀 Getting Started
-
-Clone or Download: Download the folder or clone from your repo.
 
 Open: Open index.html in any modern web browser.
 
 Use: Select images, crop & edit, combine, adjust watermark and output settings.
 
 Export: Click download to save your output as PNG, JPEG, or PDF.
+
 
 ## ✅ Requirements
 
@@ -38,8 +38,8 @@ No installation needed
 
 ## 📜 License
 
-MIT License (or specify your own)
+MIT License .
 
 ## 👤 Author
 
-Akash Pramanik 
+Akash Pramanik .
