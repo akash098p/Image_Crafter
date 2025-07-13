@@ -19,7 +19,7 @@ Built with clean HTML, CSS, and vanilla JavaScript, ImageCrafter runs entirely c
   •📥 Download combined result as PNG, JPEG, or PDF
 
 
-## Screenshot
+## Screenshots
 
 ![Image Crafter](ImgCraft.png)
 
