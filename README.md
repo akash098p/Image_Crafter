@@ -1,4 +1,4 @@
-## ImageCrafter
+8## ImageCrafter
 
   ImageCrafter is a sleek, user-friendly web tool that lets you combine, edit, customize, and watermark images directly in your browser — no installation or backend server needed. It’s perfect for quick tasks like merging photos for presentations, adding watermarks for social media, or preparing simple image collages for personal or professional use.
 
@@ -19,7 +19,7 @@ Built with clean HTML, CSS, and vanilla JavaScript, ImageCrafter runs entirely c
   •📥 Download combined result as PNG, JPEG, or PDF
 
 
-## 📸 Screenshots
+## 🖥 Preview 
 
 ![Image Crafter](ImgCraft.png)
 
@@ -42,7 +42,7 @@ No installation needed
 
 ## 📜 License
 
-MIT License .
+This project is licensed under the MIT License. You are free to use, modify, and distribute it.
 
 ## 👤 Author
 
