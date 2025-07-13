@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <title>ImageCrafter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Image Crafter ✨</h1>
+
+  <div class="container">
+    <!-- Upload and Clear Buttons -->
+    <div class="controls">
+      <label for="fileInput" class="custom-upload">Select Images</label>
+      <input type="file" id="fileInput" multiple accept="image/*" />
+      <button onclick="clearAll()" style="background: #ff4444">Clear All</button>
+    </div>
+
+    <!-- Layout, Text, Resolution Settings -->
+    <div class="advanced-controls">
+      <label for="layoutSelector">Layout :</label>
+      <select id="layoutSelector">
+        <option value="vertical">Vertical</option>
+        <option value="horizontal">Horizontal</option>
+        <option value="grid">Grid</option>
+      </select>
+
+      <label for="resolutionSelector">Resolution :</label>
+      <select id="resolutionSelector">
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="web">Web Optimized</option>
+      </select>
+
+      <div>
+        <label for="scaleSlider">Scale :</label>
+        <input type="range" id="scaleSlider" min="0.1" max="2" step="0.1" value="1" />
+        <span id="scaleValue">1.0x</span>
+      </div>
+    </div>
+
+    <!-- Enhanced Watermark Controls -->
+    <div class="watermark-controls">
+      <label for="watermarkText">Watermark Text:</label>
+      <input type="text" id="watermarkText" placeholder="Enter watermark..." />
+      
+      <label for="watermarkFont">Font:</label>
+      <select id="watermarkFont">
+        <option value="Arial">Arial</option>
+        <option value="Helvetica">Helvetica</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Courier New">Courier New</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Verdana">Verdana</option>
+        <option value="Comic Sans MS">Comic Sans MS</option>
+        <option value="Impact">Impact</option>
+        <option value="Trebuchet MS">Trebuchet MS</option>
+        <option value="Palatino">Palatino</option>
+      </select>
+
+      <label for="watermarkColor">Color:</label>
+      <input type="color" id="watermarkColor" value="#000000" />
+
+      <label for="watermarkPosition">Position:</label>
+      <select id="watermarkPosition" onchange="toggleCustomPosition()">
+        <option value="top-left">Top Left</option>
+        <option value="top-right">Top Right</option>
+        <option value="bottom-left">Bottom Left</option>
+        <option value="bottom-right">Bottom Right</option>
+        <option value="center">Center</option>
+        <option value="custom">Custom</option>
+      </select>
+
+      <div id="customPositionControls" style="display: none;">
+        <label for="watermarkX">X Position:</label>
+        <input type="range" id="watermarkX" min="0" max="100" value="50" />
+        <span id="xValue">50%</span>
+        
+        <label for="watermarkY">Y Position:</label>
+        <input type="range" id="watermarkY" min="0" max="100" value="50" />
+        <span id="yValue">50%</span>
+      </div>
+
+      <div><label for="watermarkTarget">Apply to:</label>
+      <select id="watermarkTarget">
+        <option value="individual">Each Image</option>
+        <option value="output">Output Only</option>
+      </select>
+      
+      <label for="watermarkSize">Size:</label>
+      <input type="range" id="watermarkSize" min="8" max="72" value="16" />
+      <span id="sizeValue">16px</span>
+
+      
+    </div>
+    </div>
+
+    <!-- PREVIEW SECTION - This is where you can see your selected images -->
+    <div class="preview-section">
+      <div class="preview-title">📸 Image Preview (Drag to Reorder)</div>
+      <div id="preview" class="preview">
+        <div class="preview-empty">No images selected. Click "Select Images" to add images.</div>
+      </div>
+    </div>
+
+    <!-- OUTPUT SECTION -->
+    <div class="output-section">
+      <div class="output-title">🎨 Combined Output</div>
+      <div class="bottom-controls">
+        <button onclick="combineImages()">Create Image</button>
+        <div class="output-box">
+          <canvas id="outputCanvas"></canvas>
+        </div>
+        <a class="download-link" id="downloadLink" href="#" onclick="toggleDownloadMenu()">📥 Download Combined Image</a>
+
+        <!-- Hidden Dropdown Menu -->
+        <div id="downloadMenu" class="download-menu" style="display: none;">
+          <button onclick="downloadPNG()">📥 Download PNG</button>
+          <button onclick="downloadJPEG()">📥 Download JPEG</button>
+          <button onclick="downloadPDF()">📄 Download PDF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Animated Cropper Modal -->
+  <div id="cropModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeCropper()">&times;</span>
+      <h2>Edit Image</h2>
+      <div class="crop-tools">
+        <button onclick="rotateImage()">⟳ Rotate</button>
+        <button onclick="flipX()">↔ Flip X</button>
+        <button onclick="flipY()">↕ Flip Y</button>
+        <button onclick="resetCrop()">🔄 Reset</button>
+      </div>
+      <img id="cropImage" />
+      <div class="crop-actions">
+        <button onclick="applyCrop()">✅ Apply Crop</button>
+        <button onclick="closeCropper()" style="background: #ff4444;">❌ Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
