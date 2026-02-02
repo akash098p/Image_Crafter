@@ -443,15 +443,3 @@ a.download-link:hover {
   align-items: center;     /* aligns items vertically */
 
 }
-/* Footer label */
-.footer-label {
-  text-align: center;
-  background-color: #121212;
-  color: #F3EF1A;
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 10pt;
-  padding: 10px 20px;
-  border-radius: 8px;
-  display: inline-block;
-  margin: 20px auto 0;
-}
