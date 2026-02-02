@@ -513,5 +513,6 @@ function downloadPDF() {
 }
 // Auto-update copyright year
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
+  document.getElementById('Year').textContent = new Date().getFullYear();
 });
+
