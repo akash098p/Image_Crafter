@@ -509,4 +509,9 @@ function downloadPDF() {
     alert('PDF functionality is not available. Please try PNG or JPEG download.');
   }
   downloadMenu.style.display = 'none';
+
 }
+// Auto-update copyright year
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+});
